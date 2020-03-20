@@ -14,22 +14,61 @@ var usuarios = model.Usuarios{
 
 // ListarUsuarios - Listar todos os investidores
 func ListarUsuarios(e echo.Context) error {
-	return e.JSON(http.StatusOK, usuarios)
+	return e.JSON(http.StatusOK, usuarios[1:])
 }
 
 // BuscarUsuario - Listar apenas um investidor pelo ID
 func BuscarUsuario(e echo.Context) error {
-	return e.String(http.StatusOK, "[ok] Buscar usuário")
+	id, _ := strconv.Atoi(e.Param("id"))
+	index := 0
+
+	for i := range usuarios {
+		if usuarios[i].ID == id {
+			index = i
+
+			break
+		}
+	}
+	return e.JSON(http.StatusOK, usuarios[index])
 }
 
 // AtualizarUsuario - Modificar o dado de um investidor
 func AtualizarUsuario(e echo.Context) error {
-	return e.String(http.StatusOK, "[ok] Atualizar usuário")
+	id, _ := strconv.Atoi(e.Param("id"))
+	index := 0
+
+	for i := range usuarios {
+		if usuarios[i].ID == id {
+			index = i
+
+			break
+		}
+	}
+
+	usuarios[index].Nome = e.FormValue("nome")
+	usuarios[index].Sobrenome = e.FormValue("sobrenome")
+	usuarios[index].Email = e.FormValue("email")
+
+	return e.JSON(http.StatusOK, usuarios[index])
 }
 
 // DeletarUsuario - Deletar um investidor
 func DeletarUsuario(e echo.Context) error {
-	return e.String(http.StatusOK, "[ok] Deletar usuário")
+	id, _ := strconv.Atoi(e.Param("id"))
+	index := 0
+
+	for i := range usuarios {
+		if usuarios[i].ID == id {
+			index = i
+
+			break
+		}
+	}
+
+	deletarUsuario := usuarios[index]
+	usuarios = append(usuarios[:index], usuarios[index+1:]...)
+
+	return e.JSON(http.StatusOK, deletarUsuario)
 }
 
 // CriarUsuario - Adicionar um investidor
