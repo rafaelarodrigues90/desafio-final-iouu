@@ -1,0 +1,10 @@
+Quero que vc faca um arquivo json que vai ser o seu "DataBase".  
+Vc vai ler e escrever dele.
+Que o database seja de investidores.
+
+Rotas:
+    Listar todos os investidores
+    [ok] Listar apenas um investidor pelo ID
+    [ok] Modificar o dado de um investidor
+    [ok] Deletar um investidor
+    [ok] Adicionar um investidor
