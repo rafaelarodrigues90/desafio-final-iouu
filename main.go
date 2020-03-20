@@ -3,6 +3,8 @@ package main
 import (
 	"net/http"
 
+	"github.com/labstack/echo/middleware"
+
 	"github.com/labstack/echo"
 )
 
@@ -10,6 +12,12 @@ func main() {
 
 	// iniciando echo
 	e := echo.New()
+
+	// middleware
+	e.Use(middleware.CORSWithConfig(middleware.CORSConfig{
+		AllowOrigins: []string{"*"},
+		AllowMethods: []string{echo.GET, echo.PUT, echo.POST, echo.DELETE},
+	}))
 
 	// função de teste
 	e.GET("/", func(c echo.Context) error {
