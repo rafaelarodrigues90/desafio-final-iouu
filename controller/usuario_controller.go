@@ -7,7 +7,6 @@ import (
 	"io/ioutil"
 	"net/http"
 	"os"
-	"strconv"
 
 	"github.com/labstack/echo"
 )
@@ -18,27 +17,31 @@ var usuarios = model.Usuarios{
 
 // ListarUsuarios - Listar todos os investidores
 func ListarUsuarios(e echo.Context) error {
+	// lê o json
 	jsonFile, err := os.Open("./db/database.json")
 	if err != nil {
-		fmt.Println(err)
+		fmt.Println("OS ERROR: ", err)
 	}
 
+	// armazena os dados em formato byte
 	byteJSON, err := ioutil.ReadAll(jsonFile)
 	if err != nil {
-		fmt.Println(err)
+		fmt.Println("IOUTIL ERROR: ", err)
 	}
 
+	// recebe modelo
 	objUsuario := usuarios
 
+	// transforma byte em string
 	err = json.Unmarshal(byteJSON, &objUsuario)
 	if err != nil {
-		fmt.Println(err)
+		fmt.Println("UNMARSHALL ERROR: ", err)
 	}
 
-	// não lê o valor do ID corretamente
-	return e.JSON(http.StatusOK, objUsuario[0:])
+	return e.JSON(http.StatusOK, objUsuario)
 }
 
+/*
 // BuscarUsuario - Listar apenas um investidor pelo ID
 func BuscarUsuario(e echo.Context) error {
 	id, _ := strconv.Atoi(e.Param("id"))
@@ -107,3 +110,4 @@ func CriarUsuario(e echo.Context) error {
 
 	return e.JSON(http.StatusCreated, novoUsuario)
 }
+*/
