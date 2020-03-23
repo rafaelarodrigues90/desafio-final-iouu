@@ -41,22 +41,42 @@ func ListarUsuarios(e echo.Context) error {
 	return e.JSON(http.StatusOK, objUsuario)
 }
 
-/*
 // BuscarUsuario - Listar apenas um investidor pelo ID
 func BuscarUsuario(e echo.Context) error {
-	id, _ := strconv.Atoi(e.Param("id"))
+	jsonFile, err := os.Open("./db/database.json")
+	if err != nil {
+		fmt.Println("OS ERROR: ", err)
+	}
+
+	// armazena os dados em formato byte
+	byteJSON, err := ioutil.ReadAll(jsonFile)
+	if err != nil {
+		fmt.Println("IOUTIL ERROR: ", err)
+	}
+
+	// recebe modelo
+	objUsuario := usuarios
+
+	// transforma byte em string
+	err = json.Unmarshal(byteJSON, &objUsuario)
+	if err != nil {
+		fmt.Println("UNMARSHALL ERROR: ", err)
+	}
+
+	id := e.Param("id") // pega o valor da string
+
 	index := 0
-
-	for i := range usuarios {
-		if usuarios[i].ID == id {
+	for i := range objUsuario {
+		// comparando as strings
+		if objUsuario[i].ID == id {
 			index = i
-
-			break
+			return e.JSON(http.StatusOK, objUsuario[index])
 		}
 	}
-	return e.JSON(http.StatusOK, usuarios[index])
+	return e.JSON(http.StatusNotFound, "Usuário não existe")
 }
 
+/*
 // AtualizarUsuario - Modificar o dado de um investidor
 func AtualizarUsuario(e echo.Context) error {
 	id, _ := strconv.Atoi(e.Param("id"))
