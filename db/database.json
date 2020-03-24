@@ -1,32 +1,32 @@
 [
     {
-        "ID":"1", 
-        "Nome":"Rafaela", 
-        "Sobrenome":"Souza Rodrigues", 
-        "Email":"rrodrigues@iouu.com.br"
+        "id": "1",
+        "nome": "Rafaela",
+        "sobrenome": "Souza Rodrigues",
+        "email": "rrodrigues@iouu.com.br"
     },
     {
-        "ID":"2", 
-        "Nome":"Rafaela", 
-        "Sobrenome":"Rodrigues", 
-        "Email":"rrodrigues@iouu.com"
+        "id": "2",
+        "nome": "Rafael",
+        "sobrenome": "Gonzales Motta",
+        "email": "rgm@rgm.com"
     },
     {
-        "ID":"3", 
-        "Nome":"Rafaela", 
-        "Sobrenome":"Souza", 
-        "Email":"rrodrigues@iouu.br"
+        "id": "3",
+        "nome": "Rafaela",
+        "sobrenome": "Souza",
+        "email": "rrodrigues@iouu.br"
     },
     {
-        "ID":"4", 
-        "Nome":"Rafaele", 
-        "Sobrenome":"S Rodrigues", 
-        "Email":"rafaeler@iouu.com.br"
+        "id": "4",
+        "nome": "Rafaele",
+        "sobrenome": "S Rodrigues",
+        "email": "rafaeler@iouu.com.br"
     },
     {
-        "ID":"5", 
-        "Nome":"Rafaele", 
-        "Sobrenome":"Rodrigues", 
-        "Email":"rafaelerodrigues@iouu.com"
+        "id": "5",
+        "nome": "Rafaele",
+        "sobrenome": "Rodrigues",
+        "email": "rafaelerodrigues@iouu.com"
     }
 ]
