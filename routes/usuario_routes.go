@@ -13,6 +13,6 @@ func RotaUsuario(g *echo.Group) {
 	g.GET("/usuarios", controller.ListarUsuarios)
 	g.GET("/buscar-usuario/:id", controller.BuscarUsuario)
 	g.PUT("/atualizar-usuario/:id", controller.AtualizarUsuario)
-	// g.DELETE("/deletar-usuario/:id", controller.DeletarUsuario)
+	g.DELETE("/deletar-usuario/:id", controller.DeletarUsuario)
 	// g.POST("/criar-usuario", controller.CriarUsuario)
 }

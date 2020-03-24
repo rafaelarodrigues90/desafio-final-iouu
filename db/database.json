@@ -6,12 +6,6 @@
         "email": "rrodrigues@iouu.com.br"
     },
     {
-        "id": "2",
-        "nome": "Rafael",
-        "sobrenome": "Gonzales Motta",
-        "email": "rgm@rgm.com"
-    },
-    {
         "id": "3",
         "nome": "Rafaela",
         "sobrenome": "Souza",
@@ -22,6 +16,12 @@
         "nome": "Rafaele",
         "sobrenome": "S Rodrigues",
         "email": "rafaeler@iouu.com.br"
+    },
+    {
+        "id": "5",
+        "nome": "Rafaele",
+        "sobrenome": "Rodrigues",
+        "email": "rafaelerodrigues@iouu.com"
     },
     {
         "id": "5",

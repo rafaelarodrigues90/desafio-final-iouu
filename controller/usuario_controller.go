@@ -126,26 +126,58 @@ func AtualizarUsuario(e echo.Context) error {
 	return e.JSON(http.StatusOK, objUsuario[index])
 }
 
-/*
 // DeletarUsuario - Deletar um investidor
 func DeletarUsuario(e echo.Context) error {
-	id, _ := strconv.Atoi(e.Param("id"))
+	jsonFile, err := os.Open("./db/database.json")
+	if err != nil {
+		fmt.Println("OS ERROR: ", err)
+	}
+
+	// armazena os dados em formato byte
+	byteJSON, err := ioutil.ReadAll(jsonFile)
+	if err != nil {
+		fmt.Println("IOUTIL ERROR: ", err)
+	}
+
+	// recebe modelo
+	objUsuario := usuarios
+
+	// transforma byte em string
+	err = json.Unmarshal(byteJSON, &objUsuario)
+	if err != nil {
+		fmt.Println("UNMARSHALL ERROR: ", err)
+	}
+
+	id := e.Param("id")
 	index := 0
 
-	for i := range usuarios {
-		if usuarios[i].ID == id {
+	for i := range objUsuario {
+		if objUsuario[i].ID == id {
 			index = i
 
 			break
 		}
 	}
 
-	deletarUsuario := usuarios[index]
-	usuarios = append(usuarios[:index], usuarios[index+1:]...)
+	deletarUsuario := objUsuario[index]
+	usuarios = append(objUsuario[:index], objUsuario[index+1:]...)
+
+	byteJSON, err = json.Marshal(objUsuario)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	err = ioutil.WriteFile("./db/database.json", byteJSON, 0644)
+	if err != nil {
+		fmt.Println("WRITEFILE ERROR", err)
+	} else {
+		fmt.Println("Usuario deletado", objUsuario[index])
+	}
 
 	return e.JSON(http.StatusOK, deletarUsuario)
 }
 
+/*
 // CriarUsuario - Adicionar um investidor
 func CriarUsuario(e echo.Context) error {
 	id, _ := strconv.Atoi(e.FormValue("id"))
